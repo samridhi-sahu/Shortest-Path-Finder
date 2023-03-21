@@ -1,0 +1,16 @@
+.grid-container {
+  margin: 5% auto;
+}
+
+.grid {
+  white-space: pre;
+}
+
+button {
+  margin: 2px;
+}
+
+.h-100{
+  height:6rem !important;
+  text-align: center !important;
+}
