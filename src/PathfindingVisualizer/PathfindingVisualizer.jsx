@@ -75,7 +75,6 @@ export default class PathfindingVisualizer extends Component {
     }
   }
 
-  /******************** Set up the initial grid ********************/
   getInitialGrid = (
     rowCount = this.state.ROW_COUNT,
     colCount = this.state.COLUMN_COUNT,
@@ -111,7 +110,6 @@ export default class PathfindingVisualizer extends Component {
     };
   };
 
-  /******************** Control mouse events ********************/
   handleMouseDown(row, col) {
     if (!this.state.isRunning) {
       if (this.isGridClear()) {
@@ -247,7 +245,6 @@ export default class PathfindingVisualizer extends Component {
     }
   }
 
-  /******************** Clear Board/Walls ********************/
 
   clearGrid() {
     if (!this.state.isRunning) {
@@ -309,7 +306,6 @@ export default class PathfindingVisualizer extends Component {
     }
   }
 
-  /******************** Create Animations ********************/
   visualize(algo) {
     if (!this.state.isRunning) {
       this.clearGrid();
@@ -334,7 +330,6 @@ export default class PathfindingVisualizer extends Component {
           visitedNodesInOrder = dfs(grid, startNode, finishNode);
           break;
         default:
-          // should never get here
           break;
       }
       const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
@@ -367,7 +362,6 @@ export default class PathfindingVisualizer extends Component {
     }
   }
 
-  /******************** Create path from start to finish ********************/
   animateShortestPath(nodesInShortestPathOrder) {
     for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
       if (nodesInShortestPathOrder[i] === 'end') {
@@ -416,7 +410,7 @@ export default class PathfindingVisualizer extends Component {
          </nav>
          <h4 className='pt-3'>
           <i>
-           A application, for finding the shortest route between two points.
+           An application, for finding the shortest route between two points.
           </i>
          </h4>
         <table
@@ -475,7 +469,6 @@ export default class PathfindingVisualizer extends Component {
           onClick={() => this.visualize('AStar')}>
           A*
         </button>
-        {/*
         <button
           type="button"
           className="btn btn-primary"
@@ -488,7 +481,7 @@ export default class PathfindingVisualizer extends Component {
           onClick={() => this.visualize('DFS')}>
           Depth First Search
         </button>
-        */} 
+        
         {this.state.isDesktopView ? (
           <button
             type="button"
@@ -509,9 +502,7 @@ export default class PathfindingVisualizer extends Component {
   }
 }
 
-/******************** Create Walls ********************/
 const getNewGridWithWallToggled = (grid, row, col) => {
-  // mouseDown starts to act strange if I don't make newGrid and work off of grid instead.
   const newGrid = grid.slice();
   const node = newGrid[row][col];
   if (!node.isStart && !node.isFinish && node.isNode) {
@@ -524,8 +515,6 @@ const getNewGridWithWallToggled = (grid, row, col) => {
   return newGrid;
 };
 
-// Backtracks from the finishNode to find the shortest path.
-// Only works when called after the pathfinding methods.
 function getNodesInShortestPathOrder(finishNode) {
   const nodesInShortestPathOrder = [];
   let currentNode = finishNode;
